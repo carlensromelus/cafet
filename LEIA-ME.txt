@@ -1,0 +1,47 @@
+LUMORA CAFÉ — PROJETO ORGANIZADO
+
+PARA ATUALIZAR SUA INSTALAÇÃO ATUAL
+1. Faça backup da pasta e do banco pelo phpMyAdmin.
+2. Renomeie a pasta antiga C:\xampp\htdocs\cafeteria para cafeteria_backup.
+3. Extraia a única pasta cafeteria deste ZIP em C:\xampp\htdocs.
+   O caminho correto é C:\xampp\htdocs\cafeteria\index.php.
+   Não coloque a pasta nova dentro da antiga.
+4. Caso tenha imagens próprias adicionadas depois deste ZIP, copie-as da pasta
+   img do backup para img da nova pasta, preservando os nomes usados no banco.
+   Confira também suas configurações locais em conexao.php e enviarEmail.php.
+5. Inicie Apache e MySQL. No phpMyAdmin, importe database/atualizar_site.sql.
+   O script mantém usuários, produtos, mensagens e pedidos. Pode ser repetido.
+   NÃO use instalar_banco.sql para atualizar uma instalação existente.
+6. Abra http://localhost/cafeteria/login.php e entre com a conta habitual.
+   Aperte Ctrl+F5 para recarregar os arquivos no navegador.
+7. Administrador: http://localhost/cafeteria/admin.php.
+   Cliente: http://localhost/cafeteria/pedidos.php.
+
+O banco configurado é lumora_cafe_v2 (root, sem senha). Se você usa outro banco,
+ajuste conexao.php e a primeira linha USE do SQL antes de importar.
+
+PARA INSTALAR DO ZERO
+Importe database/instalar_banco.sql. Cadastre uma conta no site e transforme
+somente sua conta em admin com o SQL abaixo, trocando pelo seu e-mail:
+UPDATE usuarios SET role='admin' WHERE email='seu-email@exemplo.com';
+
+ORGANIZAÇÃO
+Páginas PHP na raiz; assets/css para estilos; assets/js para scripts;
+database para banco e atualização; img para imagens; vendor para dependências.
+Não há outras pastas cafeteria dentro do projeto nem cópias com (2).
+
+CORREÇÕES
+- Admin em páginas separadas, com contadores e consultas a cada 5 segundos.
+- Checkout e acompanhamento usam a mesma tabela e os mesmos status.
+- Meus pedidos mostra produtos, endereço e atualização automática do status.
+- Links antigos meus_pedidos.php e novo_pedido.php redirecionam ao fluxo atual.
+- O banco novo inclui mensagens lidas e a data da última alteração do pedido.
+- CSS e JavaScript usam caminhos organizados e versão na URL.
+
+TESTE NO XAMPP
+Entre como cliente, adicione produto ao carrinho e conclua um pedido.
+Abra admin_pedidos.php em outra sessão administrativa, altere e salve o status.
+Em até 5 segundos o cliente deve ver a alteração sem recarregar a página.
+Envie uma mensagem pelo contato, confira o contador no admin e marque como lida.
+O admin preserva status selecionados que ainda não foram salvos.
+Pagamento continua presencial na entrega ou retirada.
