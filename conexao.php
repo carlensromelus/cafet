@@ -4,14 +4,15 @@
 // Lumora Café
 // =========================
 
-// Configurações do banco
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db   = "lumora_cafe_v2";
+// Configurações do banco via variáveis de ambiente
+$host = getenv('DB_HOST') ?: 'db';
+$user = getenv('DB_USER') ?: 'lumora';
+$pass = getenv('DB_PASS') ?: 'lumora';
+$db   = getenv('DB_NAME') ?: 'lumora_cafe_v2';
+$port = (int)(getenv('DB_PORT') ?: 3306);
 
 // Cria conexão
-$conn = new mysqli($host, $user, $pass, $db);
+$conn = new mysqli($host, $user, $pass, $db, $port);
 
 
 // Verifica erro de conexão
