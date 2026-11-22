@@ -22,7 +22,7 @@ if ($conn->connect_error) {
 
 // Define charset (evita problema com acentos)
 $conn->set_charset("utf8mb4");
-?>
+
 
 
 
